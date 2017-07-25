@@ -8,34 +8,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 /**
  * Created by zhangjinbo on 17-7-24.
  */
 
 public class PageFragment extends Fragment {
-    public static final String ARGS_PAGE = "args_page";
-    private int mPage;
-    public static PageFragment newInstance(int page) {
-        Bundle args = new Bundle();
-        args.putInt(ARGS_PAGE, page);
-        PageFragment fragment = new PageFragment();
-        fragment.setArguments(args);
+    private View view;
+    public static PageFragment newInstance(View view) {
+        PageFragment fragment = new PageFragment(view);
         return fragment;
+    }
+
+    public PageFragment(View view) {
+        this.view = view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPage = getArguments().getInt(ARGS_PAGE);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
-        TextView textView = view.findViewById(R.id.text_view);
-        textView.setText("第" + mPage + "页");
         return view;
-
     }
 }
